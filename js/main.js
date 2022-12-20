@@ -1,15 +1,12 @@
 //Create an array called choices that contains the three options that a player can choose from.
 const choices = ['rock', 'paper', 'scissors'];
-console.log(choices);
 
 //Create a function that will randomly select the computers choice from the array of choices.
 
 function getComputerChoice() {
     const computerChoice = choices[Math.floor(Math.random(choices) * 3)];
-    console.log(computerChoice);
     return computerChoice
 }
-getComputerChoice();
 
 /*Create a function that will get the selection of the player. It will perform input validation
  so that as long as the input is a case-insensitive match for one of the options that a player
@@ -25,10 +22,38 @@ function getPlayerChoice() {
         const choiceInLower = choice.toLowerCase();
         if (choices.includes(choiceInLower)) {
             validatedInput = true;
-            console.log(choice);
             return choiceInLower;
         }
     }
 }
 
-getPlayerChoice();
+/*Create a function that will greet the user with a "Welcome!" message, then allow the user to play five rounds against the computer before finally
+ ending the game with a message saying "Game Over".*/
+
+function game() {
+    console.log("Welcome!")
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        function playRound(playerSelection, computerSelection) {
+            if(playerSelection == computerSelection) {
+                console.log("It's a Tie");
+            }
+            else if(
+                (playerSelection == "rock" && computerSelection == "scissors") ||
+                (playerSelection == "paper" && computerSelection == "rock") ||
+                (playerSelection == "scissors" && computerSelection == "paper")
+            ) {
+                console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+            }
+            else {
+                console.log(`You Lose. ${computerSelection} beats ${playerSelection}`);
+            }
+        }
+        playRound(playerSelection, computerSelection)
+        console.log("*********************************");
+    }
+    console.log("Game Over")
+}
+
+game()
