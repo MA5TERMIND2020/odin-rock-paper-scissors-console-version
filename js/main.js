@@ -31,6 +31,8 @@ function getPlayerChoice() {
  ending the game with a message saying "Game Over".*/
 
 function game() {
+    let scorePlayer = 0;
+    let scoreComputer = 0;
     console.log("Welcome!")
     for (let i = 0; i < 5; i++) {
         const playerSelection = getPlayerChoice();
@@ -45,15 +47,26 @@ function game() {
                 (playerSelection == "scissors" && computerSelection == "paper")
             ) {
                 console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+                scorePlayer++;
             }
             else {
                 console.log(`You Lose. ${computerSelection} beats ${playerSelection}`);
+                scoreComputer++
             }
         }
         playRound(playerSelection, computerSelection)
         console.log("*********************************");
     }
-    console.log("Game Over")
+    console.log("Game Over");
+    if(scorePlayer > scoreComputer) {
+        console.log(`YOU WON!!! The score was ${scorePlayer} to ${scoreComputer}.`);
+    }
+    else if(scorePlayer == scoreComputer) {
+        console.log(`IT WAS A TIE. The score was ${scorePlayer} to ${scoreComputer}.`);
+    }
+    else {
+        console.log(`THE COMPUTER WON. The score was ${scorePlayer} to ${scoreComputer}.`);
+    }
 }
 
 game()
